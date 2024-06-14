@@ -22,6 +22,8 @@ function playGame() {
   let computerScore = 0,
       playerScore = 0;
 
+  const roundInfo = document.querySelector(".round-info");
+
   // Making a function for playing a single round
   function playRound(computerChoice, playerChoice) {
     // Making parameters case insensitive
@@ -29,48 +31,54 @@ function playGame() {
     let newPlayerChoice = playerChoice.toLowerCase();
 
     // Building the logic
+    roundInfo.innerHTML = "";
     if (newComputerChoice == "rock" && newPlayerChoice == "rock") {
-      console.log("Tie, Rock vs Rock");
+      roundInfo.textContent = "Tie, Rock vs Rock";
     }
     else if (newComputerChoice == "rock" && newPlayerChoice == "paper") {
-      console.log("You win!, Paper beats Rock");
+      roundInfo.textContent = "You win!, Paper beats Rock";
       playerScore += 1;
     }
     else if (newComputerChoice == "rock" && newPlayerChoice == "scissors") {
-      console.log("You lose, Rock beats Scissors");
+      roundInfo.textContent = "You lose, Rock beats Scissors";
       computerScore += 1;
     }
     else if (newComputerChoice == "paper" && newPlayerChoice == "rock") {
-      console.log("You lose, Paper beats Rock");
+      roundInfo.textContent = "You lose, Paper beats Rock";
       computerScore += 1;
     }
     else if (newComputerChoice == "paper" && newPlayerChoice == "paper") {
-      console.log("Tie, Paper vs Paper");
+      roundInfo.textContent = "Tie, Paper vs Paper";
     }
     else if (newComputerChoice == "paper" && newPlayerChoice == "scissors") {
-      console.log("You win!, Scissors beats Paper");
+      roundInfo.textContent = "You win!, Scissors beats Paper";
       playerScore += 1;
     }
     else if (newComputerChoice == "scissors" && newPlayerChoice == "rock") {
-      console.log("You win!, Rock beats Scissors");
+      roundInfo.textContent = "You win!, Rock beats Scissors";
       playerScore += 1;
     }
     else if (newComputerChoice == "scissors" && newPlayerChoice == "paper") {
-      console.log("You lose, Scissors beats Paper");
+      roundInfo.textContent = "You lose, Scissors beats Paper";
       computerScore += 1;
     }
     else if (newComputerChoice == "scissors" && newPlayerChoice == "scissors") {
-      console.log("Tie, Scissors vs Scissors");
+      roundInfo.textContent = "Tie, Scissors vs Scissors";
     }
 
     return;
   }
 
   // Checking which button was clicked
+  let playerSelection;
+  const liveScores = document.querySelector(".live-score");
+
   const allOptions = document.querySelector(".options");
   allOptions.addEventListener("click", (e) => {
-    const playerSelection = e.target.id;
+    liveScores.innerHTML = "";
+    playerSelection = e.target.id;
     playRound(getComputerChoice(), playerSelection);
+    liveScores.textContent = `Computer: ${computerScore} |||| Player: ${playerScore}`;
   });
 
   // // Declaring the winner
