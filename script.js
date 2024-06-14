@@ -79,19 +79,19 @@ function playGame() {
     playerSelection = e.target.id;
     playRound(getComputerChoice(), playerSelection);
     liveScores.textContent = `Computer: ${computerScore} |||| Player: ${playerScore}`;
-  });
 
-  // // Declaring the winner
-  // console.log("Final Results: ")
-  // if (computerScore > playerScore) {
-  //   console.log("YOU LOSE");
-  // }
-  // else if (computerScore < playerScore) {
-  //   console.log("YOU WIN!");
-  // }
-  // else {
-  //   console.log("TIE");
-  // }
+    // Checking for winner
+    const finalResults = document.querySelector(".final-result");
+    finalResults.textContent = `computer = ${computerScore}, player = ${playerScore}`;
+    if (computerScore === 5 && playerScore < 5) {
+      finalResults.textContent = "YOU LOSE";
+      allOptions.style["pointer-events"] = "none";
+    }
+    else if (playerScore === 5 && computerScore < 5) {
+      finalResults.textContent = "YOU WIN!";
+      allOptions.style["pointer-events"] = "none";
+    }
+  });
 }
 
 playGame();
