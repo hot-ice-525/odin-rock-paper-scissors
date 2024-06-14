@@ -17,11 +17,6 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-function getHumanChoice() {
-  let playerChoice = prompt("Choose one: Rock, Paper or Scissors: ");
-  return playerChoice;
-}
-
 function playGame() {
   // Defining the score variables
   let computerScore = 0,
@@ -29,12 +24,6 @@ function playGame() {
 
   // Making a function for playing a single round
   function playRound(computerChoice, playerChoice) {
-    // Checking validity of playerChoice
-    if (playerChoice == undefined) {
-      console.log("Please choose a valid option");
-      return;
-    }
-
     // Making parameters case insensitive
     let newComputerChoice = computerChoice.toLowerCase();
     let newPlayerChoice = playerChoice.toLowerCase();
@@ -77,22 +66,24 @@ function playGame() {
     return;
   }
 
-  // Conducting a game of 5 rounds
-  for (let i = 0; i < 5; i++) {
-    playRound(getComputerChoice(), getHumanChoice());
-  }
+  // Checking which button was clicked
+  const allOptions = document.querySelector(".options");
+  allOptions.addEventListener("click", (e) => {
+    const playerSelection = e.target.id;
+    playRound(getComputerChoice(), playerSelection);
+  });
 
-  // Declaring the winner
-  console.log("Final Results: ")
-  if (computerScore > playerScore) {
-    console.log("YOU LOSE");
-  }
-  else if (computerScore < playerScore) {
-    console.log("YOU WIN!");
-  }
-  else {
-    console.log("TIE");
-  }
+  // // Declaring the winner
+  // console.log("Final Results: ")
+  // if (computerScore > playerScore) {
+  //   console.log("YOU LOSE");
+  // }
+  // else if (computerScore < playerScore) {
+  //   console.log("YOU WIN!");
+  // }
+  // else {
+  //   console.log("TIE");
+  // }
 }
 
 playGame();
