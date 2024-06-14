@@ -82,7 +82,6 @@ function playGame() {
 
     // Checking for winner
     const finalResults = document.querySelector(".final-result");
-    finalResults.textContent = `computer = ${computerScore}, player = ${playerScore}`;
     if (computerScore === 5 && playerScore < 5) {
       finalResults.textContent = "YOU LOSE";
       allOptions.style["pointer-events"] = "none";
